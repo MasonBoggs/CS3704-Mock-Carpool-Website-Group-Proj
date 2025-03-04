@@ -15,10 +15,12 @@
         header {
             background: rgb(134, 31, 65);
             color: white;
-            padding: 5px;
+            padding: 10px;
         }
         h1 {
-            margin: 5px;
+            margin: 0;
+            flex-shrink: 0;
+            text-align: left;
         }
         h2 {
             background: rgb(229, 117, 31);
@@ -31,20 +33,27 @@
             color: white;
             background: rgb(117, 120, 123);
         }
-        div {
-            background: rgb(117, 120, 123);
-            margin: auto;
-            width: 100px;
-        }
         ul {
-            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
             padding: 0;
+            margin: auto;
             list-style-type: none;
         }
         li {
             background: rgb(134, 31, 65);
             display: inline-block;
             margin: 10px;
+        }
+        a {
+            color:white;
+            text-decoration: none;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
     </style>
 
@@ -53,13 +62,13 @@
 
         <header>
             <nav>
+                <h1>Blacksburg Carpooling</h1>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="carpool.html">Carpool</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
-            <h1>Blacksburg Carpooling</h1>
         </header>
         
     </body>
