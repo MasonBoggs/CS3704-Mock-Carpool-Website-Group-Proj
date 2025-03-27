@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Carpool</title>
 
     <style>
@@ -23,23 +22,49 @@
         h2 {
             background: rgb(229, 117, 31);
             color: white;
+            padding: 5px;
         }
         section {
-            display: flex;
-            flex-direction: row;
             padding: 20px;
-            color: white;
-            background: rgb(117, 120, 123);
         }
-        div {
-            background: rgb(117, 120, 123);
-            margin: auto;
-            width: 100px;
+        .ride-post {
+            background: rgb(229, 117, 31);
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .btn {
+            background: rgb(134, 31, 65);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+        .btn:hover {
+            background: rgb(100, 20, 50);
+        }
+        .report-btn {
+            background: rgb(200, 50, 50);
+        }
+        .block-btn {
+            background: rgb(50, 50, 200);
+        }
+        .filters {
+            margin-bottom: 20px;
+        }
+        .filters input, .filters select {
+            margin-right: 10px;
+            padding: 5px;
         }
         ul {
             margin: 0;
             padding: 0;
             list-style-type: none;
+            display: flex;
+            background: rgb(134, 31, 65);
         }
         li {
             background: rgb(134, 31, 65);
@@ -49,22 +74,76 @@
         a {
             color:white;
             text-decoration: none;
+            padding: 10px;
+            display: block;
         }
     </style>
-
 </head>
-    <body>
+<body>
 
-        <header>
-            <nav>
-                <ul>
-                    <li><h1>Carpool</h1></li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="carpool.html">Carpool</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-    </body>
+    <header>
+        <nav>
+            <ul>
+                <li><h1>Carpool</h1></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="carpool.html">Carpool</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Available Rides</h2>
+
+        <!-- Filters Section -->
+        <div class="filters">
+            <input type="text" id="driverFilter" placeholder="Filter by driver name">
+            <select id="ratingFilter">
+                <option value="">Filter by rating</option>
+                <option value="4.5">4.5+</option>
+                <option value="4.7">4.7+</option>
+                <option value="4.9">4.9+</option>
+            </select>
+            <select id="priceFilter">
+                <option value="">Filter by price</option>
+                <option value="15">$15 or less</option>
+                <option value="20">$20 or less</option>
+                <option value="25">$25 or less</option>
+            </select>
+            <button class="btn">Apply Filters</button>
+        </div>
+
+        <div class="ride-post">
+            <p><strong>Driver:</strong> John Doe</p>
+            <p><strong>From:</strong> blank</p>
+            <p><strong>To:</strong> DNDS</p>
+            <p><strong>Price:</strong> $15</p>
+            <button class="btn">Request Ride</button>
+            <button class="btn report-btn">Report</button>
+            <button class="btn block-btn">Block</button>
+        </div>
+
+        <div class="ride-post">
+            <p><strong>Driver:</strong> Jane Smith</p>
+            <p><strong>From:</strong> blank</p>
+            <p><strong>To:</strong> McBryde</p>
+            <p><strong>Price:</strong> $20</p>
+            <button class="btn">Request Ride</button>
+            <button class="btn report-btn">Report</button>
+            <button class="btn block-btn">Block</button>
+        </div>
+
+        <div class="ride-post">
+            <p><strong>Driver:</strong> Alex Johnson</p>
+            <p><strong>From:</strong> blank</p>
+            <p><strong>To:</strong> Goodwin Hall</p>
+            <p><strong>Price:</strong> $18</p>
+            <button class="btn">Request Ride</button>
+            <button class="btn report-btn">Report</button>
+            <button class="btn block-btn">Block</button>
+        </div>
+
+    </section>
+
+</body>
 </html>
