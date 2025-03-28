@@ -4,59 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>About</title>
+    <title>Profile Page</title>
 
     <style>
-        body {
+        .navigation-body {
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
-        header {
+        .navigation-header {
             background: rgb(134, 31, 65);
             color: white;
             padding: 5px;
         }
-        h1 {
+        .navigation-h1 {
             margin: 5px;
         }
-        h2 {
+        .navigation-h2 {
             background: rgb(229, 117, 31);
             color: white;
         }
-        section {
+        .navigation-section {
             display: flex;
             flex-direction: row;
             padding: 20px;
             color: white;
             background: rgb(117, 120, 123);
         }
-        div {
+        .navigation-div {
             background: rgb(117, 120, 123);
             margin: auto;
             width: 100px;
         }
-        ul {
+        .navigation-ul {
             margin: 0;
             padding: 0;
             list-style-type: none;
         }
-        li {
+        .navigation-li {
             background: rgb(134, 31, 65);
             display: inline-block;
             margin: 10px;
         }
-        a {
+        .navigation-a {
             color:white;
             text-decoration: none;
         }
         /*
             Below is the CSS setup for the profile boxes
         */
-        .profileSection {
+        .profile-section {
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             margin: 20px;
             padding: 20px;
+            background: white;
+            border-radius: 10px;
         }
         .container {
             display: flex;
@@ -70,15 +72,16 @@
             border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            background: white;
         }
-        input, button {
+        .profile-inputs, .profile-button {
             display: block;
             width: 100%;
             margin: 10px 0;
             padding: 10px;
             box-sizing: border-box;
         }
-        button {
+        .profile-button {
             background-color: rgb(134, 31, 65);
             color: white;
             border: none;
@@ -97,40 +100,41 @@
             min-width: 300px;
             font-weight: bold;
         }
+        
     </style>
 
 </head>
-    <body>
-
+    <body class="navigation-body">
         <!--This is the header navigation section-->
-        <header>
-            <nav>
-                <ul>
-                    <li><h1>My Profile</h1></li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="carpool.html">Carpool</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="profile.html">Profile</a></li>
+        <header class="navigation-header">
+            <nav class="navigation-nav">
+                <ul class="navigation-ul">
+                    <li class="navigation-li"><h1 class="navigation-h1">My Profile</h1></li>
+                    <li class="navigation-li"><a class="navigation-a" href="index.html">Home</a></li>
+                    <li class="navigation-li"><a class="navigation-a" href="carpool.html">Carpool</a></li>
+                    <li class="navigation-li"><a class="navigation-a" href="about.html">About</a></li>
+                    <li class="navigation-li"><a class="navigation-a" href="profile.html">Profile</a></li>
                 </ul>
             </nav>
-        </header>
+        </header>      
+    </body>
 
-        <!--Below is the implementation of the profile page-->
-    <body class="profileSection">
-            <h2 style="text-align: center;">Profile Information</h2>
+    <!--Below is the profile layout-->
+    <section class="profile-section">
+        <h2 style="text-align: center;">Profile Information</h2>
 
         <div class="container">
-            <!--This gets the user's basic information-->
+            <!-- User input form -->
             <div class="profile-box">
                 <form id="profileInput">
-                    <input type="text" id="name" placeholder="Enter Name" required>
-                    <input type="text" id="age" placeholder="Enter Age" required>
-                    <input type="text" id="bio" placeholder="Enter Bio" required>
-                    <button type="submit">Save Profile</button>
+                    <input class="profile-inputs" type="text" id="name" placeholder="Enter Name" required>
+                    <input class="profile-inputs" type="text" id="age" placeholder="Enter Age" required>
+                    <input class="profile-inputs" type="text" id="bio" placeholder="Enter Bio" required>
+                    <button class="profile-button" type="submit">Save Profile</button>
                 </form>
             </div>
 
-            <!--After inputting, the information will be set and displayed here-->
+            <!-- Display user profile -->
             <div class="profile-display" id="profileDisplay">
                 <h3>My Profile</h3>
                 <p><strong>Name:</strong> <span id="inputName">N/A</span></p>
@@ -138,36 +142,34 @@
                 <p><strong>Bio:</strong> <span id="inputBio">N/A</span></p>
             </div>
         </div>
+    </section>
 
-        <!--Below is Javascript implementation-->
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                document.getElementById("inputName").textContent = localStorage.getItem("name") || "N/A";
-                document.getElementById("storedAge").textContent = localStorage.getItem("age") || "N/A";
-                document.getElementById("inputAge").textContent = localStorage.getItem("bio") || "N/A";
-            });
+    <!-- Profile Page JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("inputName").textContent = localStorage.getItem("name") || "N/A";
+            document.getElementById("inputAge").textContent = localStorage.getItem("age") || "N/A";
+            document.getElementById("inputBio").textContent = localStorage.getItem("bio") || "N/A";
+        });
 
-            document.getElementById("profileInput").addEventListener("submit", function (event) {
-                event.preventDefault();
+        document.getElementById("profileInput").addEventListener("submit", function (event) {
+            event.preventDefault();
 
-                let name = document.getElementById("name").value.trim();
-                let age = document.getElementById("age").value.trim();
-                let bio = document.getElementById("bio").value.trim();
+            let name = document.getElementById("name").value.trim();
+            let age = document.getElementById("age").value.trim();
+            let bio = document.getElementById("bio").value.trim();
 
-                if (name && age && bio) {
-                    localStorage.setItem("name", name);
-                    localStorage.setItem("age", age);
-                    localStorage.setItem("bio", bio);
+            if (name && age && bio) {
+                localStorage.setItem("name", name);
+                localStorage.setItem("age", age);
+                localStorage.setItem("bio", bio);
 
-                    document.getElementById("inputName").textContent = name;
-                    document.getElementById("inputAge").textContent = age;
-                    document.getElementById("inputBio").textContent = bio;
+                document.getElementById("inputName").textContent = name;
+                document.getElementById("inputAge").textContent = age;
+                document.getElementById("inputBio").textContent = bio;
 
-                    document.getElementById("profileInput").reset();
-                }
-            });
-        </script>
-    </body>
-        
-    </body>
+                document.getElementById("profileInput").reset();
+            }
+        });
+    </script>
 </html>
