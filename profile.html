@@ -124,7 +124,7 @@
         <h2 style="text-align: center;">Profile Information</h2>
 
         <div class="container">
-            <!-- User input form -->
+            <!--User's information inputs-->
             <div class="profile-box">
                 <form id="profileInput">
                     <input class="profile-inputs" type="text" id="name" placeholder="Enter Name" required>
@@ -134,7 +134,7 @@
                 </form>
             </div>
 
-            <!-- Display user profile -->
+            <!--Displays the user's inputs-->
             <div class="profile-display" id="profileDisplay">
                 <h3>My Profile</h3>
                 <p><strong>Name:</strong> <span id="inputName">N/A</span></p>
@@ -144,7 +144,7 @@
         </div>
     </section>
 
-    <!-- Profile Page JavaScript -->
+    <!--Profile page script, which is in Javascript-->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("inputName").textContent = localStorage.getItem("name") || "N/A";
