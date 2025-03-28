@@ -1,87 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blacksburg Carpooling</title>
 
-    <title>Blacksburg Carpooling</title>
+  <!-- Bootstrap CSS -->
+  <link 
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+  />
 
-    <!--This email form needs to be below the website's title for design purposes.
-        This also needs to be debugged to not crash after a successful input for
-        all the boxes.-->
-    <form action="/send-email" method="POST">
-        <label for="userEmail">Your Email:</label>
-        <input type="email" id="userEmail" name="userEmail" required>
+  <!-- EmailJS library -->
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+  ></script>
+  <script type="text/javascript">
+    (function () {
+      // Initialize EmailJS with your User ID
+      emailjs.init("EWEmQ8PqoIBDnuW_w");
+    })();
     
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required>
-    
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-    
-        <button type="submit">Send Notification</button>
-    </form>
-    
+    function sendMail() {
+      // Collect input values
+      var params = {
+        userEmail: document.getElementById("userEmail").value,
+        subject:   document.getElementById("subject").value,
+        message:   document.getElementById("message").value
+      };
 
-    <style>
-        body {
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: rgb(134, 31, 65);
-            color: white;
-            padding: 5px;
-        }
-        h1 {
-            margin: 5px;
-        }
-        h2 {
-            background: rgb(229, 117, 31);
-            color: white;
-        }
-        section {
-            display: flex;
-            flex-direction: row;
-            padding: 20px;
-            color: white;
-            background: rgb(117, 120, 123);
-        }
-        div {
-            background: rgb(117, 120, 123);
-            margin: auto;
-            width: 100px;
-        }
-        ul {
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
-        }
-        li {
-            background: rgb(134, 31, 65);
-            display: inline-block;
-            margin: 10px;
-        }
-        a {
-            color:white;
-            text-decoration: none;
-        }
-    </style>
+      // These should match your actual EmailJS service ID & template ID
+      const serviceID  = "service_77wy542";
+      const templateID = "template_qowo76y";
 
+      // Attempt to send the email
+      emailjs.send(serviceID, templateID, params)
+        .then(res => {
+          // Clear the form fields on success (optional)
+          document.getElementById("userEmail").value = "";
+          document.getElementById("subject").value   = "";
+          document.getElementById("message").value   = "";
+
+          console.log("EmailJS response:", res);
+          alert("Your message was sent successfully!");
+        })
+        .catch(err => {
+          console.error("EmailJS error:", err);
+          alert("Oops, something went wrong. Please try again.");
+        });
+
+      // Prevent the default form submission
+      return false;
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: rgb(134, 31, 65);
+      color: white;
+      padding: 5px;
+    }
+    h1 {
+      margin: 5px;
+    }
+    h2 {
+      background: rgb(229, 117, 31);
+      color: white;
+    }
+    section {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      color: white;
+      background: rgb(117, 120, 123);
+    }
+    div {
+      background: rgb(117, 120, 123);
+      margin: auto;
+      width: 100px;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    li {
+      background: rgb(134, 31, 65);
+      display: inline-block;
+      margin: 10px;
+    }
+    a {
+      color:white;
+      text-decoration: none;
+    }
+  </style>
 </head>
-    <body>
+<body>
 
-        <header>
-            <nav>
-                <ul>
-                    <li><h1>Blacksburg Carpooling</h1></li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="carpool.html">Carpool</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-    </body>
+  <div class="container border mt-3 bg-light">
+    <!-- Keep any other Bootstrap elements you want here -->
+
+    <!-- Your email form. Note the onsubmit attribute calls sendMail(). -->
+    <form onsubmit="return sendMail();">
+      <label for="userEmail">Email a ride!:</label>
+      <input 
+        type="email"
+        id="userEmail"
+        name="userEmail"
+        required
+      />
+
+      <label for="subject">Subject:</label>
+      <input
+        type="text"
+        id="subject"
+        name="subject"
+        required
+      />
+
+
+      <label for="message">Your Name and Message:</label>
+      <textarea
+        id="message"
+        name="message"
+        required
+      ></textarea>
+
+      <button type="submit">Send Notification</button>
+    </form>
+  </div>
+
+  <header>
+    <nav>
+      <ul>
+        <li><h1>Blacksburg Carpooling</h1></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="carpool.html">Carpool</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+</body>
 </html>

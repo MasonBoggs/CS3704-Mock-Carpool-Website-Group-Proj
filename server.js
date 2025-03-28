@@ -1,46 +1,54 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+const port = 3000;
 
-// Example route that handles form submissions
+// Middleware to parse form data
+app.use(express.urlencoded({ extended: true }));
+
+// Example: GET route for a profile page
+app.get('/profile', (req, res) => {
+  // Render a profile HTML page, or send a placeholder response for testing
+  res.send('<h1>Welcome to your profile!</h1>');
+});
+
+// POST route to handle the email form
 app.post('/send-email', async (req, res) => {
   try {
-    // 1) Extract data from the request body (e.g., user’s email, message, etc.)
     const { userEmail, subject, message } = req.body;
 
-    // 2) Create a transporter (using Gmail example, but you can use any SMTP server)
+    // 1. Create a transporter object (adjust with your actual email service credentials)
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: 'Gmail', 
       auth: {
-        user: 'yourgmail@gmail.com',
-        pass: 'YOUR_GMAIL_APP_PASSWORD',
-      },
+        user: 'your-email@example.com',
+        pass: 'yourEmailPassword'
+      }
     });
 
-    // 3) Set up the mail options
+    // 2. Set up mail options
     const mailOptions = {
-      from: 'yourgmail@gmail.com',
-      to: userEmail,
+      from: 'your-email@example.com',
+      to: userEmail,         // or you might want to email yourself, the user, etc.
       subject: subject,
-      text: message,
+      text: message
     };
 
-    // 4) Send the email
+    // 3. Send the email
     await transporter.sendMail(mailOptions);
 
-    res.status(200).json({ success: true, message: 'Email sent successfully!' });
+    // 4. On success, redirect to the profile page
+    return res.redirect('/profile');
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: 'Error sending email' });
+    // If there's an error, you can show an error message or page
+    console.error('Error sending email:', error);
+    return res.status(500).send('Error sending email. Please try again later.');
   }
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
