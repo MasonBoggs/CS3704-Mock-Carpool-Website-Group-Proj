@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>About</title>
+    <title>About us</title>
 
     <style>
         body {
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
         }
         header {
             background: rgb(134, 31, 65);
@@ -23,49 +26,215 @@
         h2 {
             background: rgb(229, 117, 31);
             color: white;
+            padding: 10px;
+            margin: 0 0 20px 0;
+            border-radius: 5px 5px 0 0;
         }
         section {
-            display: flex;
-            flex-direction: row;
             padding: 20px;
-            color: white;
-            background: rgb(117, 120, 123);
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        div {
-            background: rgb(117, 120, 123);
-            margin: auto;
-            width: 100px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        ul {
+        ul.nav {
             margin: 0;
             padding: 0;
             list-style-type: none;
+            display: flex;
+            background: rgb(134, 31, 65);
         }
-        li {
+        ul.nav li {
             background: rgb(134, 31, 65);
             display: inline-block;
             margin: 10px;
         }
         a {
-            color:white;
+            color: white;
             text-decoration: none;
+            padding: 10px;
+            display: block;
+            transition: background 0.2s;
+        }
+        a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .team-member {
+            flex: 0 0 250px;
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid rgb(134, 31, 65);
+        }
+        .team-member h3 {
+            margin-top: 0;
+            color: rgb(134, 31, 65);
+        }
+        .team-member p.role {
+            color: rgb(229, 117, 31);
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .values {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .value {
+            flex: 1 1 300px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid rgb(134, 31, 65);
+            border-radius: 0 5px 5px 0;
+        }
+        .value h3 {
+            margin-top: 0;
+            color: rgb(134, 31, 65);
+        }
+        
+        footer {
+            background: rgb(51, 51, 51);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer-links {
+            margin-top: 20px;
+        }
+        .footer-links a {
+            color: #ddd;
+            margin: 0 10px;
+            display: inline-block;
         }
     </style>
-
 </head>
-    <body>
-
-        <header>
+<body>
+    <header>
+        <div class="container">
             <nav>
-                <ul>
+                <ul class="nav">
                     <li><h1>About</h1></li>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="carpool.html">Carpool</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="profile.html">Profile</a></li>
                 </ul>
             </nav>
-        </header>
-        
-    </body>
+        </div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Our Story</h2>
+            <p>Hokie Rides was created by a group of Virginia Tech students who recognized the need for a safe, affordable, and eco-friendly transportation solution for the campus community.</p>
+            <p>With limited parking on campus and rising costs of transportation, we wanted to create a platform where students could easily connect to share rides, save money, and reduce their environmental impact.</p>
+
+        </section>
+
+        <section>
+            <h2>Our Values</h2>
+            <div class="values">
+                <div class="value">
+                    <h3>Safety First</h3>
+                    <p>We prioritize the safety of our users through verified student accounts, driver ratings, and a trusted community where you travel only with fellow Hokies.</p>
+                </div>
+                <div class="value">
+                    <h3>Affordability</h3>
+                    <p>We believe transportation shouldn't break the bank. Our platform helps students save money by sharing the costs of travel.</p>
+                </div>
+                <div class="value">
+                    <h3>Sustainability</h3>
+                    <p>By encouraging carpooling, we're helping reduce the carbon footprint of our campus community and working toward a greener future.</p>
+                </div>
+                <div class="value">
+                    <h3>Community</h3>
+                    <p>Beyond just transportation, we're building connections between students who might not otherwise meet, strengthening our Hokie community.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Meet Our Team</h2>
+            <p>Hokie Rides is developed and maintained by a dedicated team of Virginia Tech students who are passionate about solving transportation challenges on campus.</p>
+            
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="" alt="Team member">
+                    <h3>Kenny Nguyen</h3>
+                    <p class="role">Backend Developer</p>
+                    <p>Computer Science Major</p>
+                </div>
+                <div class="team-member">
+                    <img src="" alt="Team member">
+                    <h3>Brian Gorman</h3>
+                    <p class="role">UX Designer</p>
+                    <p>Computer Science Major</p>
+                </div>
+                <div class="team-member">
+                    <img src="" alt="Team member">
+                    <h3>Mason Boggs</h3>
+                    <p class="role">Backend Developer</p>
+                    <p>Computer Science Major</p>
+                </div>
+                <div class="team-member">
+                    <img src="" alt="Team member">
+                    <h3>Sagar Chauhan</h3>
+                    <p class="role">Web Developer </p>
+                    <p>Computer Science Major</p>
+                </div>
+                <div class="team-member">
+                    <img src="" alt="Team member">
+                    <h3>Grayson Watts</h3>
+                    <p class="role">Web Developer </p>
+                    <p>Computer Science Major</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Our Mission</h2>
+            <p>At Hokie Rides, our mission is to revolutionize campus transportation by creating a safe, affordable, and sustainable carpooling platform exclusively for the Virginia Tech community.</p>
+            <p>We aim to reduce traffic congestion around campus, decrease the demand for limited parking spaces, lower transportation costs for students, and reduce our collective carbon footprint.</p>
+            <p>By connecting Hokies who are traveling similar routes, we're not just offering a transportation solution—we're building a stronger, more connected campus community.</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Blacksburg Carpool - Virginia Tech Campus Carpooling</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </footer>
+</body>
 </html>
