@@ -78,30 +78,42 @@ function applyFilters() {
     });
 }
 
-// Handle block action
-document.querySelectorAll('.block-btn').forEach(function(button) {
-    button.addEventListener('click', function() {
-        const ridePost = this.closest('.ride-post');  // Get the parent ride post element
-        const driverName = ridePost.getAttribute('data-driver');
+//"Request Ride" buttons
+document.getElementById("ridesContainer").addEventListener("click", function(event) {
+    if (event.target && event.target.classList.contains("btn") && event.target.textContent === "Request Ride") {
+        const ridePost = event.target.closest(".ride-post");
+        const driverName = ridePost.getAttribute("data-driver");
+        const rideFrom = ridePost.querySelector("p:nth-of-type(2)").textContent.split(":")[1].trim();
+        const rideTo = ridePost.querySelector("p:nth-of-type(3)").textContent.split(":")[1].trim();
+        const ridePrice = ridePost.querySelector("p:nth-of-type(4)").textContent.split(":")[1].trim();
+
+        //Display a message
+        alert(`You have requested a ride with ${driverName} from ${rideFrom} to ${rideTo} for ${ridePrice}.`);
+    }
+});
+
+//"Block" buttons
+document.getElementById("ridesContainer").addEventListener("click", function(event) {
+    if (event.target && event.target.classList.contains("block-btn")) {
+        const ridePost = event.target.closest(".ride-post");
+        const driverName = ridePost.getAttribute("data-driver");
 
         // Display a message
         alert(`You have blocked the ride offered by ${driverName}.`);
 
         // Optionally, hide the ride post
         ridePost.style.display = "none";
-    });
+    }
 });
 
-// Handle report action
-document.querySelectorAll('.report-btn').forEach(function(button) {
-    button.addEventListener('click', function() {
-        const ridePost = this.closest('.ride-post');  // Get the parent ride post element
-        const driverName = ridePost.getAttribute('data-driver');
+//"Report" buttons
+document.getElementById("ridesContainer").addEventListener("click", function(event) {
+    if (event.target && event.target.classList.contains("report-btn")) {
+        const ridePost = event.target.closest(".ride-post");
+        const driverName = ridePost.getAttribute("data-driver");
 
         // Display a message
         alert(`You have reported the ride offered by ${driverName}.`);
-
-        // Optionally, hide the ride post or take other action
-    });
+    }
 });
 
