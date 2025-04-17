@@ -23,7 +23,7 @@ document.getElementById("postRideForm").addEventListener("submit", function(even
     ridePost.classList.add("ride-post");
     ridePost.setAttribute("data-driver", driverName);
     ridePost.setAttribute("data-price", ridePrice);
-    ridePost.setAttribute("data-rating", "4.5");  // Default rating for new rides (can be changed)
+    ridePost.setAttribute("data-rating", "4.5");  // Default rating for new rides
 
     // Add the ride details
     ridePost.innerHTML = `
@@ -77,3 +77,31 @@ function applyFilters() {
         ridePost.style.display = matches ? "block" : "none";
     });
 }
+
+// Handle block action
+document.querySelectorAll('.block-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const ridePost = this.closest('.ride-post');  // Get the parent ride post element
+        const driverName = ridePost.getAttribute('data-driver');
+
+        // Display a message
+        alert(`You have blocked the ride offered by ${driverName}.`);
+
+        // Optionally, hide the ride post
+        ridePost.style.display = "none";
+    });
+});
+
+// Handle report action
+document.querySelectorAll('.report-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const ridePost = this.closest('.ride-post');  // Get the parent ride post element
+        const driverName = ridePost.getAttribute('data-driver');
+
+        // Display a message
+        alert(`You have reported the ride offered by ${driverName}.`);
+
+        // Optionally, hide the ride post or take other action
+    });
+});
+
